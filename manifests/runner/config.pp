@@ -11,8 +11,10 @@ class sonarqube::runner::config (
   },
 ) {
   # Sonar Runner configuration file
-  file { "${installroot}/${package_name}-${version}/conf/sonar-runner.properties":
+  # Given that there either is a  symlink the to dir in the install.pp or the 
+  # package deploysin the right directory -$version is redundant
+  file { "${installroot}/${package_name}/conf/sonar-runner.properties":
     content => template('sonarqube/sonar-runner.properties.erb'),
-    require => Exec['unzip-sonar-runner'],
+    require => Class[''],
   }
 }

@@ -2,6 +2,7 @@
 #
 # Install the sonar-runner
 class sonarqube::runner (
+  $usepackage       = false,
   $package_name     = 'sonar-runner',
   $version          = '2.4',
   $download_url     = 'http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist',
@@ -22,6 +23,7 @@ class sonarqube::runner (
 
   anchor { 'sonarqube::runner::begin': } ->
   class { '::sonarqube::runner::install':
+    usepackage   => $usepackage,
     package_name => $package_name,
     version      => $version,
     download_url => $download_url,
