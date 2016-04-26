@@ -86,7 +86,6 @@ class sonarqube (
     system => $user_system,
   }
 
-  notify {"Installroot $installroot: ": }
 
 
 
@@ -96,12 +95,11 @@ class sonarqube (
     }
   }
   else {
-    notfiy {"Removed anti pattern wget, untar  installation": }
+    notfiy {'Removed anti pattern wget, untar  installation': }
   }
   # End crappy install 
 
   # Sonar configuration files
-  notify {"Installdir ${installdir} ": }
   if $config != undef {
     file { "${installdir}/conf/sonar.properties":
       source  => $config,
